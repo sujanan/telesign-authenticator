@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<feature id="org.wso2.carbon.extension.identity.authenticator.smsotp.connector" label="WSO2 Carbon - identity SMS OTP Feature" provider-name="%providerName" version="2.0.17.SNAPSHOT">
+  <description>This feature contains extension feature for smsotp</description>
+  <copyright>%copyright</copyright>
+  <license url="%licenseURL">%license</license>
+  <plugin id="org.wso2.carbon.extension.identity.authenticator.smsotp.connector" unpack="false" version="2.0.17.SNAPSHOT"/>
+</feature>

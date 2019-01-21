@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAll">
+
+    <test name="telesign">
+        <classes>
+            <class name="org.wso2.carbon.extension.identity.authenticator.TeleSignAuthenticatorTest" />
+        </classes>
+    </test>
+
+</suite>
