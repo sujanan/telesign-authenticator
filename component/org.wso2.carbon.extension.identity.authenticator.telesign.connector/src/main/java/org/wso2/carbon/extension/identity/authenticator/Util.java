@@ -17,22 +17,22 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.Map;
 
-class Util {
+public class Util {
     private static final String MOBILE_CLAIM = "http://wso2.org/claims/mobile";
 
-    static boolean isParameterEmpty(HttpServletRequest request, String param) {
+    public static boolean isParameterEmpty(HttpServletRequest request, String param) {
         return StringUtils.isEmpty(request.getParameter(param));
     }
 
-    static boolean isParameterNotEmpty(HttpServletRequest request, String param) {
+    public static boolean isParameterNotEmpty(HttpServletRequest request, String param) {
         return StringUtils.isNotEmpty(request.getParameter(param));
     }
 
-    static boolean doesUserExistInUserStore(String username) throws AuthenticationFailedException, UserStoreException {
+    public static boolean doesUserExistInUserStore(String username) throws AuthenticationFailedException, UserStoreException {
         return FederatedAuthenticatorUtil.isUserExistInUserStore(username);
     }
 
-    static Map<String, String> getParamsMapFromApplicationAuthenticationXml(String authenticatorName) {
+    public static Map<String, String> getParamsMapFromApplicationAuthenticationXml(String authenticatorName) {
         AuthenticatorConfig config = FileBasedConfigurationBuilder.getInstance()
                 .getAuthenticatorBean(authenticatorName);
         if (config == null) {
@@ -45,26 +45,26 @@ class Util {
         return MultitenantUtils.getTenantDomain(username);
     }
 
-    static String getTenantAwareUsername(String username) {
+    public static String getTenantAwareUsername(String username) {
         return MultitenantUtils.getTenantAwareUsername(username);
     }
 
-    static UserRealm getUserRealm(String username) throws UserStoreException {
+    public static UserRealm getUserRealm(String username) throws UserStoreException {
         int tenantId = IdentityTenantUtil.getTenantId(getTenantDomain(username));
         return IdentityTenantUtil
                 .getRealmService()
                 .getTenantUserRealm(tenantId);
     }
 
-    static String getMobileNumber(String username) throws UserStoreException {
+    public static String getMobileNumber(String username) throws UserStoreException {
         UserRealm userRealm = getUserRealm(username);
         /* TODO: is userRealm null check necessary? */
         return userRealm.getUserStoreManager().getUserClaimValue(
                 getTenantAwareUsername(username), MOBILE_CLAIM, null);
     }
 
-    static boolean isBasicAuthentication(ContextHandler contextHandler) {
-        AuthenticationContext context = contextHandler.getContext();
+    public static boolean isBasicAuthentication(ContextWrapper contextWrapper) {
+        AuthenticationContext context = contextWrapper.getContext();
         ApplicationAuthenticator applicationAuthenticator = context
                 .getSequenceConfig()
                 .getStepMap()
@@ -74,8 +74,8 @@ class Util {
         return applicationAuthenticator instanceof LocalApplicationAuthenticator;
     }
 
-    static void updateLocalAuthenticatedUserInStepConfig(ContextHandler contextHandler) {
+    static void updateLocalAuthenticatedUserInStepConfig(ContextWrapper contextWrapper) {
         FederatedAuthenticatorUtil.updateLocalAuthenticatedUserInStepConfig(
-                contextHandler.getContext(), contextHandler.getAuthenticatedUser());
+                contextWrapper.getContext(), contextWrapper.getAuthenticatedUser());
     }
 }

@@ -20,9 +20,6 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.wso2.carbon.extension.identity.authenticator.TeleSignAuthenticator.*;
 import static org.wso2.carbon.extension.identity.helper.IdentityHelperConstants.AUTHENTICATION;
-import static org.wso2.carbon.extension.identity.helper.IdentityHelperConstants.USER_NAME;
-import static org.wso2.carbon.extension.identity.helper.IdentityHelperConstants.AUTHENTICATE_USER;
-import static org.wso2.carbon.extension.identity.helper.IdentityHelperConstants.SUPER_TENANT_DOMAIN;
 
 
 @RunWith(PowerMockRunner.class)
@@ -44,7 +41,7 @@ public class TeleSignAuthenticatorTest {
     private AuthenticationContext context;
 
     @Mock
-    private ContextHandler contextHandler;
+    private ContextWrapper contextWrapper;
 
     @Mock
     private Util util;

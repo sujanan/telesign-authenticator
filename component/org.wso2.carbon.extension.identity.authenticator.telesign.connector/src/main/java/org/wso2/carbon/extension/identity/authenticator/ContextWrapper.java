@@ -16,34 +16,30 @@ import static org.wso2.carbon.extension.identity.helper.IdentityHelperConstants.
 import static org.wso2.carbon.extension.identity.helper.IdentityHelperConstants.AUTHENTICATE_USER;
 import static org.wso2.carbon.extension.identity.helper.IdentityHelperConstants.SUPER_TENANT_DOMAIN;
 
-class ContextHandler {
+public class ContextWrapper {
     private final AuthenticationContext context;
 
-    ContextHandler(AuthenticationContext context) {
+    public ContextWrapper(AuthenticationContext context) {
         this.context = context;
     }
 
-    boolean isLogoutRequest() {
+    public boolean isLogoutRequest() {
         return context.isLogoutRequest();
     }
 
-    boolean isRetrying() {
+    public boolean isRetrying() {
         return context.isRetrying();
     }
 
-    AuthenticatedUser getAuthenticatedUser() {
-        return (AuthenticatedUser) context.getProperty(AUTHENTICATE_USER);
-    }
-
-    String getAuthenticatorName() {
+    public String getAuthenticatorName() {
         return String.valueOf(context.getProperty(AUTHENTICATION));
     }
 
-    String getUsername() {
+    public String getUsername() {
         return String.valueOf(context.getProperty(USER_NAME));
     }
 
-    String getQueryParamsWithFrameworkContextId() {
+    public String getQueryParamsWithFrameworkContextId() {
         return FrameworkUtils.getQueryStringWithFrameworkContextId(
                 context.getQueryParams(),
                 context.getCallerSessionKey(),
@@ -54,52 +50,62 @@ class ContextHandler {
         return context.getTenantDomain();
     }
 
-    void setAuthenticatorName(String name) {
+    public AuthenticatedUser getAuthenticatedUser() {
+        return (AuthenticatedUser) context.getProperty(AUTHENTICATE_USER);
+    }
+
+    public Object getLocalProperty() {
+        return context.getProperty(IdentityHelperConstants.GET_PROPERTY_FROM_REGISTRY);
+    }
+
+    public void setAuthenticatorName(String name) {
         context.setProperty(AUTHENTICATION, name);
     }
 
-    void addUsernameFromFirstStepToContext() throws AuthenticationFailedException {
+    public void addUsernameFromFirstStepToContext() throws AuthenticationFailedException {
         FederatedAuthenticatorUtil.setUsernameFromFirstStep(context);
     }
 
-    ApplicationAuthenticationXmlConfig getInstanceOfApplicationAuthenticationXmlConfig(String authenticatorName)
+    public ApplicationAuthenticationXmlConfig getInstanceOfApplicationAuthenticationXmlConfig(String authenticatorName)
             throws AuthenticationFailedException {
-        return new ApplicationAuthenticationXmlConfig(authenticatorName);
+        String tenantDomain = getTenantDomain();
+        if (!tenantDomain.equals(SUPER_TENANT_DOMAIN)) {
+            IdentityHelperUtil.loadApplicationAuthenticationXMLFromRegistry(
+                    context,
+                    authenticatorName,
+                    tenantDomain);
+        }
+        return new ApplicationAuthenticationXmlConfig(authenticatorName, tenantDomain, getLocalProperty());
     }
 
-    class ApplicationAuthenticationXmlConfig {
-        private static final String OTP_MANDATORY = "OtpMandatory";
-
+    public static class ApplicationAuthenticationXmlConfig {
+        private final String tenantDomain;
+        private final Object localProperty;
         private final Map<String, String> configMap;
 
-        private ApplicationAuthenticationXmlConfig(String authenticatorName) throws AuthenticationFailedException {
-            if (!getTenantDomain().equals(SUPER_TENANT_DOMAIN)) {
-                IdentityHelperUtil.loadApplicationAuthenticationXMLFromRegistry(
-                        context,
-                        authenticatorName,
-                        getTenantDomain());
-            }
+        private ApplicationAuthenticationXmlConfig(String authenticatorName, String tenantDomain, Object localProperty)
+                throws AuthenticationFailedException {
+            this.tenantDomain = tenantDomain;
+            this.localProperty = localProperty;
             configMap = Util.getParamsMapFromApplicationAuthenticationXml(authenticatorName);
         }
 
         private String getConfiguration(String configName) {
-            Object propertyFromLocal = context.getProperty(IdentityHelperConstants.GET_PROPERTY_FROM_REGISTRY);
-            String tenantDomain = getTenantDomain();
-            if ((propertyFromLocal != null) || MultitenantConstants.SUPER_TENANT_DOMAIN_NAME.equals(tenantDomain)
-                    && configMap.containsKey(configName)) {
+            if (canGetConfig(configName)) {
                 return configMap.get(configName);
-            } else if ((context.getProperty(configName)) != null) {
-                return String.valueOf(context.getProperty(configName));
             }
             return null;
         }
 
-        boolean isOtpMandatory() {
-            return Boolean.parseBoolean(getConfiguration(OTP_MANDATORY));
+        private boolean canGetConfig(String configName) {
+            boolean b1 = localProperty != null;
+            boolean b2 = MultitenantConstants.SUPER_TENANT_DOMAIN_NAME.equals(tenantDomain)
+                    && configMap.containsKey(configName);
+            return b1 || b2;
         }
     }
 
-    AuthenticationContext getContext() {
+    public AuthenticationContext getContext() {
         return context;
     }
 

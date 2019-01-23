@@ -21,16 +21,13 @@ package org.wso2.carbon.extension.identity.authenticator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.wso2.carbon.extension.identity.authenticator.ContextHandler.ApplicationAuthenticationXmlConfig;
 import org.wso2.carbon.identity.application.authentication.framework.AbstractApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.AuthenticatorFlowStatus;
 import org.wso2.carbon.identity.application.authentication.framework.FederatedApplicationAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
 import org.wso2.carbon.identity.application.authentication.framework.exception.AuthenticationFailedException;
 import org.wso2.carbon.identity.application.authentication.framework.exception.LogoutFailedException;
-import org.wso2.carbon.identity.application.authentication.framework.model.AuthenticatedUser;
 import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkConstants;
-import org.wso2.carbon.user.api.UserStoreException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,8 +60,8 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
                                            HttpServletResponse response,
                                            AuthenticationContext context)
             throws AuthenticationFailedException, LogoutFailedException {
-        ContextHandler contextHandler = new ContextHandler(context);
-        if (contextHandler.isLogoutRequest()) {
+        ContextWrapper contextWrapper = new ContextWrapper(context);
+        if (contextWrapper.isLogoutRequest()) {
             return SUCCESS_COMPLETED;
         }
         if (Util.isParameterNotEmpty(request, MOBILE_NUMBER)) {
@@ -73,7 +70,7 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
         }
         if (Util.isParameterNotEmpty(request, OTP_CODE)) {
             initiateAuthenticationRequest(request, response, context);
-            if (contextHandler.getAuthenticatorName().equals(getName())) {
+            if (contextWrapper.getAuthenticatorName().equals(getName())) {
                 return INCOMPLETE;
             }
             return SUCCESS_COMPLETED;
@@ -86,22 +83,14 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
                                                  HttpServletResponse response,
                                                  AuthenticationContext context)
             throws AuthenticationFailedException {
-        try {
-            ContextHandler contextHandler = new ContextHandler(context);
-            contextHandler.setAuthenticatorName(getName());
-
-            contextHandler.addUsernameFromFirstStepToContext();
-            /* Current user */
-            AuthenticatedUser user = contextHandler.getAuthenticatedUser();
-            if (user == null) {
-                throw new AuthenticationFailedException("Authentication failed: no authenticated user found.");
-            }
-            ApplicationAuthenticationXmlConfig xmlConfig =
-                    contextHandler.getInstanceOfApplicationAuthenticationXmlConfig(getName());
-            boolean otpMandatory = xmlConfig.isOtpMandatory();
-            boolean userExists = Util.doesUserExistInUserStore(user.getUserName());
-        } catch (UserStoreException e) {
-            e.printStackTrace();
+        ContextWrapper contextWrapper = new ContextWrapper(context);
+        /* Set authenticator name */
+        contextWrapper.setAuthenticatorName(getName());
+        /* Add first step username to context */
+        contextWrapper.addUsernameFromFirstStepToContext();
+        /* Current user */
+        if (contextWrapper.getAuthenticatedUser() == null) {
+            throw new AuthenticationFailedException("Authentication failed: no authenticated user found.");
         }
     }
 
@@ -127,24 +116,8 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
         return "TeleSign Authenticator";
     }
 
-    /* ================================================== CASES ================================================== */
-
-    private void caseOtpMandatory(ContextHandler contextHandler, HttpServletRequest request) {
-        if (contextHandler.isRetrying() && Util.isParameterNotEmpty(request, RESEND_CODE)) {
-
-        }
+    public char tokenCharacterDelimiter() {
+        return ' ';
     }
-
-    private void caseFirstStepOnly(ContextHandler contextHandler) {
-        if (Util.isBasicAuthentication(contextHandler)) {
-            updateToBasicAuthentication(contextHandler);
-        }
-    }
-
-    private void updateToBasicAuthentication(ContextHandler contextHandler) {
-        Util.updateLocalAuthenticatedUserInStepConfig(contextHandler);
-        contextHandler.setAuthenticatorName("basic");
-    }
-
 }
 
