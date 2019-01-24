@@ -109,28 +109,28 @@ public class ApplicationAuthenticationXmlProps {
 
     private ApplicationAuthenticationXmlProps(ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper,
                                               AuthenticationContext context, Builder builder) {
-        otpMandatory = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpMandatoryProp, OTP_MANDATORY, xmlHelper, context)));
-        otpEnabled = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpEnabledProp, OTP_ENABLED, xmlHelper, context)));
-        otpToMobile = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpToMobileProp, OTP_TO_MOBILE, xmlHelper, context)));
-        otpToFederatedMobile = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpToFederatedMobileProp, OTP_TO_FEDERATED_MOBILE, xmlHelper, context)));
-        resendCodeEnabled = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.resendCodeEnabledProp, RESEND_CODE_ENABLED, xmlHelper, context)));
-        retryEnabled = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.retryEnabledProp, RETRY_ENABLED, xmlHelper, context)));
-        alphaNumeric = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.alphaNumericProp, ALPHA_NUMERIC, xmlHelper, context)));
-        tokenExpiryTime = xmlHelper.getConfiguration(
-                assign(builder.tokenExpiryTimeProp, TOKEN_EXPIRY_TIME, xmlHelper, context));
-        tokenLength = xmlHelper.getConfiguration(
-                assign(builder.tokenLengthProp, TOKEN_LENGTH, xmlHelper, context));
-        errorPage = xmlHelper.getConfiguration(
-                assign(builder.errorPageProp, ERROR_PAGE, xmlHelper, context));
-        redirectPage = xmlHelper.getConfiguration(
-                assign(builder.redirectPageProp, REDIRECT_PAGE, xmlHelper, context));
+        otpMandatory = toBoolean(assign(
+                builder.otpMandatoryProp, OTP_MANDATORY, xmlHelper, context));
+        otpEnabled = toBoolean(assign(
+                builder.otpEnabledProp, OTP_ENABLED, xmlHelper, context));
+        otpToMobile = toBoolean(assign(
+                builder.otpToMobileProp, OTP_TO_MOBILE, xmlHelper, context));
+        otpToFederatedMobile = toBoolean(assign(
+                builder.otpToFederatedMobileProp, OTP_TO_FEDERATED_MOBILE, xmlHelper, context));
+        resendCodeEnabled = toBoolean(assign(
+                builder.resendCodeEnabledProp, RESEND_CODE_ENABLED, xmlHelper, context));
+        retryEnabled = toBoolean(assign(
+                builder.retryEnabledProp, RETRY_ENABLED, xmlHelper, context));
+        alphaNumeric = toBoolean(assign(
+                builder.alphaNumericProp, ALPHA_NUMERIC, xmlHelper, context));
+        tokenExpiryTime = assign(
+                builder.tokenExpiryTimeProp, TOKEN_EXPIRY_TIME, xmlHelper, context);
+        tokenLength = assign(
+                builder.tokenLengthProp, TOKEN_LENGTH, xmlHelper, context);
+        errorPage = assign(
+                builder.errorPageProp, ERROR_PAGE, xmlHelper, context);
+        redirectPage = assign(
+                builder.redirectPageProp, REDIRECT_PAGE, xmlHelper, context);
     }
 
     private String assign(String prop, String defaultProp, ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper,
