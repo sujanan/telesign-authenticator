@@ -1,14 +1,14 @@
 package org.wso2.carbon.extension.identity.authenticator;
 
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public interface UseCaseChain {
 
     void setNextChain(UseCaseChain nextChain);
 
-    void process(HttpRequest request,
-                 HttpResponse response,
+    void process(HttpServletRequest request,
+                 HttpServletResponse response,
                  ContextWrapper contextWrapper,
-                 ContextWrapper.ApplicationAuthenticationXmlConfig xmlConfig);
+                 ContextWrapper.ApplicationAuthenticationXmlHelper xmlConfig);
 }

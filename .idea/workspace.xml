@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c075c7d6-c71e-475b-8b96-6a8962fc03fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/UseCaseChain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ApplicationAuthenticationXmlProps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/FirstStepOnly.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignUseCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticatorConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/UseCaseChain.java" beforeDir="false" afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/UseCaseChain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/test/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/test/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticatorTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.abstractotp/target/" />
@@ -28,11 +28,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
+            <state relative-caret-position="-11">
+              <caret line="81" column="38" lean-forward="true" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignUseCase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,8 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/UseCaseChain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+            <state relative-caret-position="184">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,14 +64,35 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/FirstStepOnly.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+            <state relative-caret-position="345">
+              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2139">
+              <caret line="107" column="46" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ApplicationAuthenticationXmlProps.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -79,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/Util.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+            <state relative-caret-position="1449">
+              <caret line="78" column="11" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,11 +169,15 @@
         <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/CaseFirstStepOnly.java" />
         <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/CaseOtpMandatory.java" />
         <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextHandler.java" />
-        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/Util.java" />
-        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticator.java" />
-        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java" />
         <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/UseCaseChain.java" />
+        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/FirstStepOnly.java" />
+        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ApplicationAuthenticationProps.java" />
+        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ApplicationAuthenticationConstants.java" />
+        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java" />
+        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/Util.java" />
+        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ApplicationAuthenticationXmlProps.java" />
         <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignUseCase.java" />
+        <option value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticator.java" />
       </list>
     </option>
   </component>
@@ -162,7 +199,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -224,11 +261,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548226457649" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548247562867" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/test/resources/testing.xml" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -416,8 +453,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3564568" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36072573" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -431,7 +469,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3295099" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3291536" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3295099" />
@@ -572,6 +610,27 @@
     <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignUseCaseHandler.java" />
     <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/CaseOtpMandatory.java" />
     <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/CaseFirstStepOnly.java" />
+    <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ApplicationAuthenticationConstants.java" />
+    <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/FirstStepOnly.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2139">
+          <caret line="107" column="46" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/test/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
@@ -584,8 +643,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/Util.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="58" column="35" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
+        <state relative-caret-position="1449">
+          <caret line="78" column="11" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ApplicationAuthenticationXmlProps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/UseCaseChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -594,8 +670,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignUseCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        <state relative-caret-position="299">
+          <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -604,28 +680,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/TeleSignAuthenticator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/UseCaseChain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/component/org.wso2.carbon.extension.identity.authenticator.telesign.connector/src/main/java/org/wso2/carbon/extension/identity/authenticator/ContextWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="78" column="4" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+        <state relative-caret-position="-11">
+          <caret line="81" column="38" lean-forward="true" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -66,7 +66,7 @@ public class ContextWrapper {
         FederatedAuthenticatorUtil.setUsernameFromFirstStep(context);
     }
 
-    public ApplicationAuthenticationXmlConfig getInstanceOfApplicationAuthenticationXmlConfig(String authenticatorName)
+    public ApplicationAuthenticationXmlHelper getInstanceOfApplicationAuthenticationXmlHelper(String authenticatorName)
             throws AuthenticationFailedException {
         String tenantDomain = getTenantDomain();
         if (!tenantDomain.equals(SUPER_TENANT_DOMAIN)) {
@@ -75,29 +75,29 @@ public class ContextWrapper {
                     authenticatorName,
                     tenantDomain);
         }
-        return new ApplicationAuthenticationXmlConfig(authenticatorName, tenantDomain, getLocalProperty());
+        return new ApplicationAuthenticationXmlHelper(authenticatorName, tenantDomain, getLocalProperty());
     }
 
-    public static class ApplicationAuthenticationXmlConfig {
+    public static class ApplicationAuthenticationXmlHelper {
         private final String tenantDomain;
         private final Object localProperty;
         private final Map<String, String> configMap;
 
-        private ApplicationAuthenticationXmlConfig(String authenticatorName, String tenantDomain, Object localProperty)
+        private ApplicationAuthenticationXmlHelper(String authenticatorName, String tenantDomain, Object localProperty)
                 throws AuthenticationFailedException {
             this.tenantDomain = tenantDomain;
             this.localProperty = localProperty;
             configMap = Util.getParamsMapFromApplicationAuthenticationXml(authenticatorName);
         }
 
-        private String getConfiguration(String configName) {
-            if (canGetConfig(configName)) {
+        public String getConfiguration(String configName) {
+            if (hasConfig(configName)) {
                 return configMap.get(configName);
             }
             return null;
         }
 
-        private boolean canGetConfig(String configName) {
+        public boolean hasConfig(String configName) {
             boolean b1 = localProperty != null;
             boolean b2 = MultitenantConstants.SUPER_TENANT_DOMAIN_NAME.equals(tenantDomain)
                     && configMap.containsKey(configName);

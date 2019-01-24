@@ -74,8 +74,14 @@ public class Util {
         return applicationAuthenticator instanceof LocalApplicationAuthenticator;
     }
 
-    static void updateLocalAuthenticatedUserInStepConfig(ContextWrapper contextWrapper) {
+    public static void updateLocalAuthenticatedUserInStepConfig(ContextWrapper contextWrapper) {
         FederatedAuthenticatorUtil.updateLocalAuthenticatedUserInStepConfig(
                 contextWrapper.getContext(), contextWrapper.getAuthenticatedUser());
+    }
+
+    public static String getConfiguration(ContextWrapper contextWrapper, String configName) {
+        Object config = contextWrapper.getContext().getProperty(configName);
+        /* If object is null value "null" will be returned */
+        return String.valueOf(config);
     }
 }

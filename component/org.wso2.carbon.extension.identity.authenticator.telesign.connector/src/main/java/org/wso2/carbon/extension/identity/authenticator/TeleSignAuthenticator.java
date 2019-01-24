@@ -36,7 +36,7 @@ import static org.wso2.carbon.identity.application.authentication.framework.Auth
 import static org.wso2.carbon.identity.application.authentication.framework.AuthenticatorFlowStatus.SUCCESS_COMPLETED;
 
 /**
- * Authenticator of TeleSign
+ * A scalable abstract Authenticator for TeleSign APIs in WSO2 Identity Server.
  */
 public class TeleSignAuthenticator extends AbstractApplicationAuthenticator implements FederatedApplicationAuthenticator {
     /* HttpServletRequest parameter key values */
@@ -88,10 +88,22 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
         contextWrapper.setAuthenticatorName(getName());
         /* Add first step username to context */
         contextWrapper.addUsernameFromFirstStepToContext();
-        /* Current user */
+        /* No need to process if no authenticated user found */
         if (contextWrapper.getAuthenticatedUser() == null) {
             throw new AuthenticationFailedException("Authentication failed: no authenticated user found.");
         }
+        TeleSignUseCase useCase = new TeleSignUseCase.Builder()
+                .request(request)
+                .response(response)
+                .contextWrapper(contextWrapper)
+                .xmlConfig(getApplicationAuthenticationXmlProps(
+                        contextWrapper.getInstanceOfApplicationAuthenticationXmlHelper(getName())))
+                .build();
+    }
+
+    protected ApplicationAuthenticationXmlProps getApplicationAuthenticationXmlProps(
+            ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper) {
+        return new ApplicationAuthenticationXmlProps.Builder(xmlHelper).build();
     }
 
     @Override
@@ -114,10 +126,6 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
     @Override
     public String getFriendlyName() {
         return "TeleSign Authenticator";
-    }
-
-    public char tokenCharacterDelimiter() {
-        return ' ';
     }
 }
 
