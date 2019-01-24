@@ -36,7 +36,7 @@ import static org.wso2.carbon.identity.application.authentication.framework.Auth
 import static org.wso2.carbon.identity.application.authentication.framework.AuthenticatorFlowStatus.SUCCESS_COMPLETED;
 
 /**
- * A scalable abstract Authenticator for TeleSign APIs in WSO2 Identity Server.
+ * An extendable abstract Authenticator for TeleSign APIs in WSO2 Identity Server.
  */
 public class TeleSignAuthenticator extends AbstractApplicationAuthenticator implements FederatedApplicationAuthenticator {
     /* HttpServletRequest parameter key values */
