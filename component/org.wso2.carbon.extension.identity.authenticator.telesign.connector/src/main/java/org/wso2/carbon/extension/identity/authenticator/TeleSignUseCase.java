@@ -22,7 +22,7 @@ public class TeleSignUseCase {
     }
 
     public interface XmlPropsStep {
-        Build xmlConfig(ApplicationAuthenticationXmlProps xmlProps);
+        Build xmlProps(ApplicationAuthenticationXmlProps xmlProps);
     }
 
     public interface Build {
@@ -54,7 +54,7 @@ public class TeleSignUseCase {
         }
 
         @Override
-        public Build xmlConfig(ApplicationAuthenticationXmlProps xmlProps) {
+        public Build xmlProps(ApplicationAuthenticationXmlProps xmlProps) {
             this.xmlProps = xmlProps;
             return this;
         }

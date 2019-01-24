@@ -1,5 +1,7 @@
 package org.wso2.carbon.extension.identity.authenticator;
 
+import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
+
 public class ApplicationAuthenticationXmlProps {
     private static final String OTP_MANDATORY = "otpMandatory";
     private static final String OTP_ENABLED = "otpEnabled";
@@ -27,6 +29,7 @@ public class ApplicationAuthenticationXmlProps {
 
     public static class Builder {
         private final ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper;
+        private final AuthenticationContext context;
         private String otpMandatoryProp;
         private String otpEnabledProp;
         private String otpToMobileProp;
@@ -39,8 +42,9 @@ public class ApplicationAuthenticationXmlProps {
         private String errorPageProp;
         private String redirectPageProp;
 
-        public Builder(ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper) {
+        public Builder(ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper, AuthenticationContext context) {
             this.xmlHelper = xmlHelper;
+            this.context = context;
         }
 
         public Builder otpMandatoryProp(String name) {
@@ -99,41 +103,45 @@ public class ApplicationAuthenticationXmlProps {
         }
 
         public ApplicationAuthenticationXmlProps build() {
-            return new ApplicationAuthenticationXmlProps(xmlHelper, this);
+            return new ApplicationAuthenticationXmlProps(xmlHelper, context, this);
         }
     }
 
     private ApplicationAuthenticationXmlProps(ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper,
-                                              Builder builder) {
+                                              AuthenticationContext context, Builder builder) {
         otpMandatory = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpMandatoryProp, OTP_MANDATORY)));
+                assign(builder.otpMandatoryProp, OTP_MANDATORY, xmlHelper, context)));
         otpEnabled = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpEnabledProp, OTP_ENABLED)));
+                assign(builder.otpEnabledProp, OTP_ENABLED, xmlHelper, context)));
         otpToMobile = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpToMobileProp, OTP_TO_MOBILE)));
+                assign(builder.otpToMobileProp, OTP_TO_MOBILE, xmlHelper, context)));
         otpToFederatedMobile = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.otpToFederatedMobileProp, OTP_TO_FEDERATED_MOBILE)));
+                assign(builder.otpToFederatedMobileProp, OTP_TO_FEDERATED_MOBILE, xmlHelper, context)));
         resendCodeEnabled = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.resendCodeEnabledProp, RESEND_CODE_ENABLED)));
+                assign(builder.resendCodeEnabledProp, RESEND_CODE_ENABLED, xmlHelper, context)));
         retryEnabled = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.retryEnabledProp, RETRY_ENABLED)));
+                assign(builder.retryEnabledProp, RETRY_ENABLED, xmlHelper, context)));
         alphaNumeric = toBoolean(xmlHelper.getConfiguration(
-                assign(builder.alphaNumericProp, ALPHA_NUMERIC)));
+                assign(builder.alphaNumericProp, ALPHA_NUMERIC, xmlHelper, context)));
         tokenExpiryTime = xmlHelper.getConfiguration(
-                assign(builder.tokenExpiryTimeProp, TOKEN_EXPIRY_TIME));
+                assign(builder.tokenExpiryTimeProp, TOKEN_EXPIRY_TIME, xmlHelper, context));
         tokenLength = xmlHelper.getConfiguration(
-                assign(builder.tokenLengthProp, TOKEN_LENGTH));
+                assign(builder.tokenLengthProp, TOKEN_LENGTH, xmlHelper, context));
         errorPage = xmlHelper.getConfiguration(
-                assign(builder.errorPageProp, ERROR_PAGE));
+                assign(builder.errorPageProp, ERROR_PAGE, xmlHelper, context));
         redirectPage = xmlHelper.getConfiguration(
-                assign(builder.redirectPageProp, REDIRECT_PAGE));
+                assign(builder.redirectPageProp, REDIRECT_PAGE, xmlHelper, context));
     }
 
-    private String assign(String prop, String defaultProp) {
-        if (prop == null) {
-            return defaultProp;
-        }
-        return prop;
+    private String assign(String prop, String defaultProp, ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper,
+                          AuthenticationContext context) {
+        return (prop == null) ? assign(defaultProp, xmlHelper, context) : assign(prop, xmlHelper, context);
+    }
+
+    private String assign(String prop, ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper,
+                          AuthenticationContext context) {
+        String config = xmlHelper.getConfiguration(prop);
+        return (config == null) ? String.valueOf(context.getProperty(prop)) : config;
     }
 
     private boolean toBoolean(String prop) {

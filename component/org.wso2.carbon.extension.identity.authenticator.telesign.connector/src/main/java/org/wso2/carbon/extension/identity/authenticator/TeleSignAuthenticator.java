@@ -56,8 +56,7 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
     }
 
     @Override
-    public AuthenticatorFlowStatus process(HttpServletRequest request,
-                                           HttpServletResponse response,
+    public AuthenticatorFlowStatus process(HttpServletRequest request, HttpServletResponse response,
                                            AuthenticationContext context)
             throws AuthenticationFailedException, LogoutFailedException {
         ContextWrapper contextWrapper = new ContextWrapper(context);
@@ -79,8 +78,7 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
     }
 
     @Override
-    protected void initiateAuthenticationRequest(HttpServletRequest request,
-                                                 HttpServletResponse response,
+    protected void initiateAuthenticationRequest(HttpServletRequest request, HttpServletResponse response,
                                                  AuthenticationContext context)
             throws AuthenticationFailedException {
         ContextWrapper contextWrapper = new ContextWrapper(context);
@@ -96,19 +94,18 @@ public class TeleSignAuthenticator extends AbstractApplicationAuthenticator impl
                 .request(request)
                 .response(response)
                 .contextWrapper(contextWrapper)
-                .xmlConfig(getApplicationAuthenticationXmlProps(
-                        contextWrapper.getInstanceOfApplicationAuthenticationXmlHelper(getName())))
+                .xmlProps(getApplicationAuthenticationXmlProps(
+                        contextWrapper.getInstanceOfApplicationAuthenticationXmlHelper(getName()), context))
                 .build();
     }
 
     protected ApplicationAuthenticationXmlProps getApplicationAuthenticationXmlProps(
-            ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper) {
-        return new ApplicationAuthenticationXmlProps.Builder(xmlHelper).build();
+            ContextWrapper.ApplicationAuthenticationXmlHelper xmlHelper, AuthenticationContext context) {
+        return new ApplicationAuthenticationXmlProps.Builder(xmlHelper, context).build();
     }
 
     @Override
-    protected void processAuthenticationResponse(HttpServletRequest request,
-                                                 HttpServletResponse response,
+    protected void processAuthenticationResponse(HttpServletRequest request, HttpServletResponse response,
                                                  AuthenticationContext context)
             throws AuthenticationFailedException {
     }
